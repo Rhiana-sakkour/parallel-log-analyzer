@@ -1,0 +1,10 @@
+java_version=27.0.1 (Oracle Corporation)
+os=Windows 11 10.0 amd64
+logical_processors=2
+max_heap_mb=1912
+cpu_model=AMD64 Family 21 Model 112 Stepping 0, AuthenticAMD
+warmup_runs=2
+recorded_runs=7
+chunk_bytes=1048576
+sizes_lines=[1000000, 4000000, 16000000]
+thread_counts=[1, 2, 4, 8, 16]
