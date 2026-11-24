@@ -1,0 +1,40 @@
+PASS  parser: well-formed line -> all fields extracted                              1 ms
+PASS  parser: '-' bytes means 0                                                     0 ms
+PASS  parser: parses a sub-range of a larger buffer (from/to respected)             0 ms
+PASS  parser: rejects malformed line []                                             0 ms
+PASS  parser: rejects malformed line [garbage]                                      0 ms
+PASS  parser: rejects malformed line [#### corrupted record ####]                   0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05/Mar/2026:14:05...]            0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05/Mar/2026:25:05...]            0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05-Mar-2026:14:05...]            0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05/Mar/2026:14:05...]            0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05/Mar/2026:14:05...]            0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05/Mar/2026:14:05...]            0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05/Mar/2026:14:05...]            0 ms
+PASS  parser: rejects malformed line [1.2.3.4 - - [05/Mar/2026:14:05...]            0 ms
+PASS  parser: every proper prefix of a valid line is handled without exception      0 ms
+PASS  scanner: chunking is lossless for every chunk size (LF, CRLF, no final newline, blank lines)     91 ms
+PASS  scanner: 300 random small files x all chunk sizes x tiny buffers            393 ms
+PASS  scanner: a line much longer than the buffer (buffer growth) is delivered intact    106 ms
+PASS  scanner: empty file and empty range produce no lines                          2 ms
+PASS  scanner: invalid range is rejected                                           10 ms
+PASS  equivalence LOCAL_MERGE: small (1k lines) x N{1,2,3,4,8,16} x 3 chunk sizes    253 ms
+PASS  equivalence LOCAL_MERGE: medium (20k lines) x N{1,2,3,4,8,16} x 3 chunk sizes    324 ms
+PASS  equivalence LOCAL_MERGE: large (200k lines) x N{1,2,3,4,8,16} x 3 chunk sizes   1728 ms
+PASS  equivalence: all three strategies agree with sequential (50k lines, N{1,4,16})    529 ms
+PASS  equivalence: top-K rankings are identical (deterministic tie-breaking)      145 ms
+PASS  stress: 40 repeated parallel runs (N=8, tiny chunks) always give the same result (race detector)   1520 ms
+PASS  generator: same seed gives byte-identical files, different seed differs      38 ms
+PASS  edge: empty file (0 bytes)                                                    8 ms
+PASS  edge: only blank lines                                                        6 ms
+PASS  edge: a single valid line without trailing newline                           13 ms
+PASS  edge: all lines malformed                                                     6 ms
+PASS  edge: CRLF line endings are handled like LF                                   7 ms
+PASS  edge: more threads than chunks (16 threads, 1 chunk) - idle workers are harmless     12 ms
+PASS  edge: statistics values are correct on a hand-made file                       0 ms
+PASS  invalid input: missing file -> IOException (both analyzers)                   3 ms
+PASS  invalid input: bad configuration is rejected                                  4 ms
+PASS  cancellation: a cancelled tracker aborts both analyzers with CancellationException      8 ms
+PASS  progress: tracker reaches 100% after a normal run                            28 ms
+
+38 passed, 0 failed, 38 total (5.3 s)

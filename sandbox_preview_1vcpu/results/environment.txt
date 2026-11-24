@@ -1,0 +1,10 @@
+java_version=21.0.12.1 (Ubuntu)
+os=Linux 6.18.44-fc-v185 amd64
+logical_processors=1
+max_heap_mb=966
+cpu_model=Intel(R) Xeon(R) Processor @ 2.10GHz
+warmup_runs=2
+recorded_runs=7
+chunk_bytes=1048576
+sizes_lines=[1000000, 4000000, 16000000]
+thread_counts=[1, 2, 4, 8, 16]

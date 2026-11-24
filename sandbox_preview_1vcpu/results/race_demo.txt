@@ -1,0 +1,7 @@
+8 threads x 50,000,000 increments => expected 400,000,000
+
+variant             final value   lost updates    time ms
+plain long          400,000,000              0        182
+ReentrantLock       400,000,000              0       6838
+AtomicLong          400,000,000              0       2916
+LongAdder           400,000,000              0       3814
